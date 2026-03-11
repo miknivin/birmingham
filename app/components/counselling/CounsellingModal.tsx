@@ -11,6 +11,8 @@ export default function CounsellingModal({
 }: CounsellingModalProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
   const firstFieldRef = useRef<HTMLInputElement | null>(null);
@@ -18,6 +20,7 @@ export default function CounsellingModal({
   useEffect(() => {
     const handleOpen = () => {
       setIsSubmitted(false);
+      setErrorMessage(null);
       setIsOpen(true);
     };
 
@@ -73,7 +76,7 @@ export default function CounsellingModal({
     };
   }, [isOpen]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!formRef.current?.checkValidity()) {
@@ -81,8 +84,31 @@ export default function CounsellingModal({
       return;
     }
 
-    setIsSubmitted(true);
-    formRef.current?.reset();
+    const formData = new FormData(formRef.current);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      setIsSubmitting(true);
+      setErrorMessage(null);
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        setErrorMessage("Something went wrong. Please try again.");
+        return;
+      }
+
+      setIsSubmitted(true);
+      formRef.current?.reset();
+    } catch (error) {
+      setErrorMessage("Unable to submit right now. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!isOpen) return null;
@@ -202,11 +228,17 @@ export default function CounsellingModal({
                 </option>
               </select>
             </label>
+            {errorMessage && (
+              <p className="text-sm text-red-600" role="alert">
+                {errorMessage}
+              </p>
+            )}
             <button
-              className="mt-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-surface transition hover:bg-accent/90"
+              className="mt-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-surface transition hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-60"
               type="submit"
+              disabled={isSubmitting}
             >
-              Submit Request
+              {isSubmitting ? "Submitting..." : "Submit Request"}
             </button>
           </form>
         ) : (
@@ -230,4 +262,3 @@ export default function CounsellingModal({
     </div>
   );
 }
-
