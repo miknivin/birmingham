@@ -1,5 +1,5 @@
 import { applicants } from "@/app/lib/content";
-
+import Image from "next/image";
 export default function ApplySection() {
   return (
     <section className="mx-auto w-full max-w-6xl px-6 py-20" id="apply">
@@ -20,7 +20,15 @@ export default function ApplySection() {
             ))}
           </ul>
         </div>
-        <div className="rounded-3xl border border-ink/10 bg-card-soft" />
+        <div className="rounded-3xl border border-ink/10 bg-card-soft">
+          <Image
+            src="/imgs/who-can.jpg"
+            alt="Birmingham Associates"
+            width={600}
+            height={600}
+            className="w-full rounded-3xl"
+          />
+        </div>
       </div>
     </section>
   );

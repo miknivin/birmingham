@@ -26,17 +26,29 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <Image src="/logo.png" alt="Birmingham Associates" width={32} height={32} />
+              <Image
+                src="/logo.png"
+                alt="Birmingham Associates"
+                width={32}
+                height={32}
+              />
               <p className="text-ink">Birmingham Associates</p>
             </div>
-            <p>Email: info@birminghamassociates.in</p>
-            <p>Phone: +919074146495</p>
+            <div className="flex flex-col gap-3">
+              <a href="mailto:info@birminghamassociates.in">
+                Email: info@birminghamassociates.in
+              </a>
+              <a href="tel:+919074146495">Phone: +919074146495</a>
+            </div>
             <p>
               South Gate, 7th Floor, Chakolas Heights, Near InforPark, Seaport -
               Airport Rd, Chittethukara, Kakkanad, Kerala 682037
             </p>
           </div>
-          <a className="font-semibold text-ink transition hover:text-ink/80" href="/privacy">
+          <a
+            className="font-semibold text-ink transition hover:text-ink/80"
+            href="/privacy"
+          >
             Privacy Policy
           </a>
         </div>

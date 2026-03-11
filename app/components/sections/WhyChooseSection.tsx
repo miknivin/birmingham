@@ -1,5 +1,5 @@
 import { reasons } from "@/app/lib/content";
-
+import Image from "next/image";
 export default function WhyChooseSection() {
   return (
     <section className="mx-auto w-full max-w-6xl px-6 py-20" id="why">
@@ -12,8 +12,8 @@ export default function WhyChooseSection() {
             Trusted guidance for ambitious students
           </h2>
           <p className="text-ink/70">
-            Expert guidance, trusted partnerships, and a student-centric approach
-            ensure every learner finds the right program and pathway.
+            Expert guidance, trusted partnerships, and a student-centric
+            approach ensure every learner finds the right program and pathway.
           </p>
           <ul className="grid gap-3 text-ink/70">
             {reasons.map((reason) => (
@@ -24,7 +24,15 @@ export default function WhyChooseSection() {
             ))}
           </ul>
         </div>
-        <div className="rounded-3xl border border-ink/10 bg-hero-card" />
+        <div className="rounded-3xl border border-ink/10 bg-hero-card">
+          <Image
+            src="/imgs/why-choose.jpg"
+            alt="Birmingham Associates"
+            width={600}
+            height={600}
+            className="rounded-3xl"
+          />
+        </div>
       </div>
     </section>
   );

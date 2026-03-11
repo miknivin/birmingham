@@ -1,9 +1,12 @@
 import OpenModalButton from "../counselling/OpenModalButton";
-
+import Image from "next/image";
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden" id="hero">
-      <div className="absolute inset-0 bg-hero-grid opacity-80" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-hero-grid opacity-80"
+        aria-hidden="true"
+      />
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-20 md:grid-cols-[1.1fr_0.9fr] md:py-28">
         <div className="space-y-6">
           <p className="text-xs font-semibold uppercase tracking-[0.4em] text-ink/60">
@@ -30,7 +33,15 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="relative">
-          <div className="h-80 w-full rounded-3xl bg-hero-card shadow-xl shadow-ink/10" />
+          <div className="h-80 w-full rounded-3xl bg-hero-card shadow-xl shadow-ink/10">
+            <Image
+              src="/imgs/hero.jpg"
+              alt="Birmingham Associates"
+              width={600}
+              height={600}
+              className="rounded-3xl"
+            />
+          </div>
           <div className="absolute -bottom-6 -left-6 hidden h-24 w-24 rounded-2xl border border-ink/10 bg-surface shadow-lg shadow-ink/10 md:block" />
         </div>
       </div>

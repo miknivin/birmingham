@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function AboutSection() {
   return (
     <section className="mx-auto w-full max-w-6xl px-6 py-20" id="about">
@@ -11,8 +12,8 @@ export default function AboutSection() {
           </h2>
           <p className="text-ink/70">
             Birmingham Associates is an education-focused organization based in
-            Kerala, committed to helping students build successful careers through
-            the right learning opportunities.
+            Kerala, committed to helping students build successful careers
+            through the right learning opportunities.
           </p>
           <p className="text-ink/70">
             We work with students across India to guide them towards
@@ -28,7 +29,15 @@ export default function AboutSection() {
           </p>
         </div>
         <div className="flex items-center">
-          <div className="h-72 w-full rounded-3xl border border-ink/10 bg-card-soft" />
+          <div className="h-72 w-full rounded-3xl border border-ink/10 bg-card-soft">
+            <Image
+              src="/imgs/about.jpg"
+              alt="Birmingham Associates"
+              width={600}
+              height={600}
+              className="rounded-3xl"
+            />
+          </div>
         </div>
       </div>
     </section>
